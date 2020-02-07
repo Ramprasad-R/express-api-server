@@ -1,11 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-//const rateLimit = require("express-rate-limit");
 const app = express();
-// const limiter = rateLimit({
-//   max: 5
-// });
-//app.use(limiter);
 app.use(express.json());
 let counter = 0;
 const counterMiddleware = (req, res, next) => {
