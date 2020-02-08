@@ -5,6 +5,4 @@ const Movie = db.define("movie", {
   yearOfRelease: DataTypes.INTEGER,
   synopsis: DataTypes.TEXT
 });
-console.log(Movies.findAll());
-
 module.exports = Movie;
