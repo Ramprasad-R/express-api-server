@@ -4,8 +4,11 @@ const router = new Router();
 router
   .get("/movies", async (req, res, next) => {
     try {
-      const movies = await Movie.findAll();
-      res.json(movies);
+      const limit = req.query.limit || 2;
+      const offset = req.query.offset || 0;
+
+      const movies = await Movie.findAndCountAll({ limit, offset });
+      res.send({ data: movies.rows, total: movies.count });
     } catch (error) {
       next(error);
     }
