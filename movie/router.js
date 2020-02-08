@@ -14,7 +14,7 @@ router
     try {
       const movieId = req.params.id;
       const movie = await Movie.findByPk(movieId);
-      !movie ? res.status(404).send("Movie Not Found") : res.send(movie);
+      !movie ? res.status(400).send("Movie Not Found") : res.send(movie);
     } catch (error) {
       next(error);
     }
@@ -33,7 +33,7 @@ router
       const movieId = req.params.id;
       const movie = await Movie.findByPk(movieId);
       if (!movie) {
-        res.status(404).send("Movie Not Found");
+        res.status(400).send("Movie Not Found");
       } else {
         const updatedMovie = await movie.update(req.body);
         res.send(updatedMovie);
@@ -47,7 +47,7 @@ router
       const movieId = req.params.id;
       const movie = await Movie.findByPk(movieId);
       if (!movie) {
-        res.status(404).send("Movie Not Found");
+        res.status(400).send("Movie Not Found");
       } else {
         await Movie.destroy({ where: { id: movieId } });
         res.status(200).send("Movie Deleted");
@@ -55,6 +55,9 @@ router
     } catch (error) {
       next(error);
     }
-  });
+  })
+  .get("*", (req, res) =>
+    res.status(404).send("Content not found, check the url")
+  );
 
 module.exports = router;
