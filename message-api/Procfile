@@ -1,0 +1,1 @@
+web: node ../message-api.js
