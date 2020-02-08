@@ -3,8 +3,11 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 let counter = 0;
+//const userHitCounter = {};
 const counterMiddleware = (req, res, next) => {
   counter = counter + 1;
+  //console.log(req.ip);
+  //const userRemoteAddress = req.ip;
   if (counter <= 5) {
     next();
   } else {
