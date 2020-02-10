@@ -40,7 +40,7 @@ router
       const movieId = req.params.id;
       const movie = await Movie.findByPk(movieId);
       if (!movie) {
-        res.status(400).send("Movie Not Found");
+        res.status(404).send("Movie Not Found");
       } else {
         const updatedMovie = await movie.update(req.body);
         res.send(updatedMovie);
@@ -54,7 +54,7 @@ router
       const movieId = req.params.id;
       const movie = await Movie.findByPk(movieId);
       if (!movie) {
-        res.status(400).send("Movie Not Found");
+        res.status(404).send("Movie Not Found");
       } else {
         await Movie.destroy({ where: { id: movieId } });
         res.status(200).send("Movie Deleted");
