@@ -16,7 +16,7 @@ app
   .post("/messages", counterMiddleware, (req, res) => {
     const message = req.body;
 
-    if (JSON.stringify(message) !== "{}") {
+    if (JSON.stringify(message) !== "{}" && message.message) {
       console.log(message);
       res.sendStatus(200);
     } else {
