@@ -17,7 +17,11 @@ router
     try {
       const movieId = req.params.id;
       const movie = await Movie.findByPk(movieId);
-      !movie ? res.status(400).send("Movie Not Found") : res.send(movie);
+      if (!movie) {
+        res.status(404).send("Movie Not Found");
+      } else {
+        res.send(movie);
+      }
     } catch (error) {
       next(error);
     }
